@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+X-COMMENT: Main-Class will be added automatically by build
+Application-Name: JMasterMind
+SplashScreen-Image: images/splash.png
+Some-property:some-value
