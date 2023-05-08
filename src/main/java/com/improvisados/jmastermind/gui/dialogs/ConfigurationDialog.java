@@ -34,6 +34,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
@@ -58,6 +59,12 @@ public class ConfigurationDialog extends JMMDialog
         Theme theme = ThemeController.getInstance().getCurrentTheme();
 
         colorSelection = new ColorSelectionPanel();
+        
+        JLabel LSelectTheme=new JLabel("Select Theme:");
+        LSelectTheme.setForeground(Color.white);
+        LSelectTheme.setSize(150,Theme.SPACING);
+         LSelectTheme.setLocation(Theme.SPACING, Theme.SPACING);
+        this.add(LSelectTheme);
 
         LThemes = new JList<Theme>();
         LThemes.setBackground(theme.getBackgroundColor());
@@ -76,7 +83,7 @@ public class ConfigurationDialog extends JMMDialog
         LThemes.setModel(themesModel);
 
         LThemes.setSize(colorSelection.getWidth(), 170);
-        LThemes.setLocation(Theme.SPACING, Theme.SPACING);
+        LThemes.setLocation(Theme.SPACING, 3*Theme.SPACING);
 
         LThemes.setSelectedValue(ThemeController.getInstance().getCurrentTheme(), true);
         add(LThemes);
@@ -99,7 +106,7 @@ public class ConfigurationDialog extends JMMDialog
         });
 
         add(BAddTheme);
-        colorSelection.setLocation(Theme.SPACING, BAddTheme.getY() + BAddTheme.getHeight() + Theme.SPACING);
+        colorSelection.setLocation(Theme.SPACING, BAddTheme.getY() + BAddTheme.getHeight() +3* Theme.SPACING);
 
         colorSelection.addComponentListener(new ComponentAdapter()
         {
@@ -112,7 +119,16 @@ public class ConfigurationDialog extends JMMDialog
         });
 
         add(colorSelection);
-        setSize(LThemes.getWidth() + 2 * Theme.SPACING, 6 * Theme.SPACING + LThemes.getHeight() + colorSelection.getHeight() + 23 + Theme.TOKEN_SIZE);
+        
+        JLabel LSelectColors=new JLabel("Select Colors:");
+        LSelectColors.setLocation(colorSelection.getX(),colorSelection.getY()-2*Theme.SPACING);
+        LSelectColors.setSize(150,Theme.SPACING);
+        LSelectColors.setForeground(Color.WHITE);
+        this.add(LSelectColors);
+
+        
+        
+        setSize(LThemes.getWidth() + 2 * Theme.SPACING, 9 * Theme.SPACING + LThemes.getHeight() + colorSelection.getHeight() + 23 + Theme.TOKEN_SIZE);
 
     }
 
