@@ -146,6 +146,7 @@ public class JMasterMind extends javax.swing.JFrame
         BNewGame.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BNewGame.setMargin(new java.awt.Insets(14, 8, 2, 14));
         BNewGame.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newgame_p.png"))); // NOI18N
+        BNewGame.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newgame_r.png"))); // NOI18N
         BNewGame.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         BNewGame.addActionListener(new java.awt.event.ActionListener()
         {
@@ -161,7 +162,9 @@ public class JMasterMind extends javax.swing.JFrame
         BPreferences.setContentAreaFilled(false);
         BPreferences.setFocusPainted(false);
         BPreferences.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        BPreferences.setPreferredSize(new java.awt.Dimension(32, 32));
         BPreferences.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/preferences_p.png"))); // NOI18N
+        BPreferences.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/preferences_r.png"))); // NOI18N
         BPreferences.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         BPreferences.addActionListener(new java.awt.event.ActionListener()
         {
@@ -221,23 +224,24 @@ public class JMasterMind extends javax.swing.JFrame
             JMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(BNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BPreferences, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
-                .addComponent(BMinimize)
+                .addComponent(BPreferences, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BClose, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(BAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
+                .addComponent(BMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BClose, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
         JMenuPanelLayout.setVerticalGroup(
             JMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(BMinimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(BClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(BNewGame, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-            .addComponent(BPreferences, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(BAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(BNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(BPreferences, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(BAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -250,7 +254,7 @@ public class JMasterMind extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(JMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 260, Short.MAX_VALUE))
+                .addGap(0, 256, Short.MAX_VALUE))
         );
 
         setLocation(new java.awt.Point(0, 0));
