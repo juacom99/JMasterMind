@@ -95,8 +95,7 @@ public class JMasterMind extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         JMenuPanel = new javax.swing.JPanel();
         BNewGame = new javax.swing.JButton();
@@ -111,36 +110,30 @@ public class JMasterMind extends javax.swing.JFrame
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/icon.png")).getImage());
         setUndecorated(true);
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter()
-        {
-            public void windowClosing(java.awt.event.WindowEvent evt)
-            {
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
 
         JMenuPanel.setBackground(new java.awt.Color(51, 51, 51));
-        JMenuPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter()
-        {
-            public void mouseDragged(java.awt.event.MouseEvent evt)
-            {
+        JMenuPanel.setPreferredSize(new java.awt.Dimension(434, 32));
+        JMenuPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
                 onMopuseDrag(evt);
             }
         });
-        JMenuPanel.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        JMenuPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt)
-            {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 onMousePress(evt);
             }
         });
 
         BNewGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newgame.png"))); // NOI18N
-        BNewGame.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 8));
+        BNewGame.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         BNewGame.setBorderPainted(false);
         BNewGame.setContentAreaFilled(false);
         BNewGame.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -148,16 +141,14 @@ public class JMasterMind extends javax.swing.JFrame
         BNewGame.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newgame_p.png"))); // NOI18N
         BNewGame.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/newgame_r.png"))); // NOI18N
         BNewGame.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BNewGame.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        BNewGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BNewGameActionPerformed(evt);
             }
         });
 
         BPreferences.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/preferences.png"))); // NOI18N
-        BPreferences.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 8));
+        BPreferences.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         BPreferences.setBorderPainted(false);
         BPreferences.setContentAreaFilled(false);
         BPreferences.setFocusPainted(false);
@@ -166,25 +157,22 @@ public class JMasterMind extends javax.swing.JFrame
         BPreferences.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/preferences_p.png"))); // NOI18N
         BPreferences.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/preferences_r.png"))); // NOI18N
         BPreferences.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BPreferences.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        BPreferences.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BPreferencesActionPerformed(evt);
             }
         });
 
         BAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/about.png"))); // NOI18N
-        BAbout.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 8, 1, 8));
+        BAbout.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         BAbout.setBorderPainted(false);
         BAbout.setContentAreaFilled(false);
         BAbout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         BAbout.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/about_p.png"))); // NOI18N
+        BAbout.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/about_r.png"))); // NOI18N
         BAbout.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BAbout.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        BAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BAboutActionPerformed(evt);
             }
         });
@@ -195,10 +183,8 @@ public class JMasterMind extends javax.swing.JFrame
         BMinimize.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimize_p.png"))); // NOI18N
         BMinimize.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/minimize_focus.png"))); // NOI18N
         BMinimize.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BMinimize.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        BMinimize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BMinimizeActionPerformed(evt);
             }
         });
@@ -210,10 +196,8 @@ public class JMasterMind extends javax.swing.JFrame
         BClose.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close_p.png"))); // NOI18N
         BClose.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close_f.png"))); // NOI18N
         BClose.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        BClose.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        BClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BCloseActionPerformed(evt);
             }
         });
@@ -223,13 +207,13 @@ public class JMasterMind extends javax.swing.JFrame
         JMenuPanelLayout.setHorizontalGroup(
             JMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JMenuPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(5, 5, 5)
                 .addComponent(BNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(BPreferences, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(BAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 251, Short.MAX_VALUE)
                 .addComponent(BMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BClose, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,7 +237,7 @@ public class JMasterMind extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(JMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 256, Short.MAX_VALUE))
         );
 
