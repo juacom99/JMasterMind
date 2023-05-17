@@ -47,6 +47,7 @@
                         </manifestEntries>
                       <!--  <manifestFile>src/main/resources/META-INF/manifest.mf</manifestFile>-->
                     </archive>
+                    <finalName>${artifactId}</finalName>
                 </configuration>
             </plugin>
             <plugin>
@@ -61,7 +62,7 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <outputDirectory>${artifactId}/lib</outputDirectory>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
                             <overWriteIfNewer>true</overWriteIfNewer>
@@ -81,7 +82,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/</outputDirectory>
+                            <outputDirectory>${artifactId}/</outputDirectory>
                             <resources>          
                                 <resource>
                                     <directory>${basedir}</directory>
@@ -89,6 +90,12 @@
                                         <include>config.jmmc</include>
                                         <include>themes/*</include>
                                         <include>JMasterMind.bat</include>                                        
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>${project.build.directory}</directory>
+                                    <includes>
+                                        <include>${artifactId}.jar</include>                                        
                                     </includes>
                                 </resource>
                             </resources>              
