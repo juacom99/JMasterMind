@@ -24,10 +24,10 @@ import com.improvisados.jmastermind.gui.layouts.CentredRowLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
@@ -49,15 +49,11 @@ public class ColorSelectionPanel extends javax.swing.JPanel
         CentredRowLayout layoutmgr = new CentredRowLayout(NUMBER_OF_COLUMNS, Theme.SPACING, Theme.TOKEN_SIZE);
         setLayout(layoutmgr);
         final Theme theme = ThemeController.getInstance().getCurrentTheme();
-        Color[] colors = Configuration.getInstance().getColors();
-        this.colors = new ArrayList();
+        this.colors = new ArrayList(Arrays.asList(Configuration.getInstance().getColors()));        
 
-        for (Color c : colors)
-        {
-            this.colors.add(c);
-        }
+       
 
-        int rows = (int) Math.ceil((double) (colors.length + 1) / NUMBER_OF_COLUMNS);
+        int rows = (int) Math.ceil((double) (colors.size() + 1) / NUMBER_OF_COLUMNS);
         setSize(Theme.TOKEN_SIZE * NUMBER_OF_COLUMNS + Theme.SPACING * (NUMBER_OF_COLUMNS - 1), Theme.TOKEN_SIZE * rows + Theme.SPACING * (rows - 1));
         setBackground(theme.getBackgroundColor());
         JButton BColor;
@@ -74,7 +70,7 @@ public class ColorSelectionPanel extends javax.swing.JPanel
 
         };
 
-        for (int i = 0; i < colors.length; i++)
+        for (int i = 0; i < colors.size(); i++)
         {
             BColor = new JButton()
             {
@@ -97,7 +93,7 @@ public class ColorSelectionPanel extends javax.swing.JPanel
             BColor.setSize(Theme.TOKEN_SIZE, Theme.TOKEN_SIZE);
             BColor.setName("" + i);
             BColor.setOpaque(true);
-            BColor.setBackground(colors[i]);
+            BColor.setBackground(colors.get(i));
             BColor.setIcon(theme.getToken());
             BColor.addMouseListener(mouseListener);
             BColor.setToolTipText("Left click to remove the color");
@@ -110,15 +106,9 @@ public class ColorSelectionPanel extends javax.swing.JPanel
         BAdd.setBackground(theme.getDefaultTokenColor());
         BAdd.setOpaque(true);
         BAdd.setContentAreaFilled(false);
-        BAdd.addActionListener(new ActionListener()
+        BAdd.addActionListener((ActionEvent e) ->
         {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                BAddActionPerformed(e);
-
-            }
-
+            BAddActionPerformed(e);
         });
         add(BAdd);
 

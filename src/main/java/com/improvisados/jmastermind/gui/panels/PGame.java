@@ -39,11 +39,9 @@ import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragSourceAdapter;
 import java.awt.dnd.DragSourceDragEvent;
 import java.awt.dnd.DragSourceDropEvent;
-import java.awt.dnd.DragSourceMotionListener;
 import java.awt.dnd.DropTargetAdapter;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -59,6 +57,10 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
+/**
+ *
+ * @author jomartinez
+ */
 public class PGame extends javax.swing.JLayeredPane
 {
 
@@ -75,6 +77,11 @@ public class PGame extends javax.swing.JLayeredPane
     private JLabel LState;
     private JButton BPlayAgain;
 
+    /**
+     *
+     * @param g
+     * @param symbols
+     */
     public PGame(Game g, Color[] symbols)
     {
 
@@ -138,11 +145,7 @@ public class PGame extends javax.swing.JLayeredPane
                 {
                     OnDrope(dtde);
                 }
-                catch (UnsupportedFlavorException ex)
-                {
-                    Logger.getLogger(PGame.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                catch (IOException ex)
+                catch (UnsupportedFlavorException | IOException ex)
                 {
                     Logger.getLogger(PGame.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -153,6 +156,7 @@ public class PGame extends javax.swing.JLayeredPane
         this.LGuesses = new DropableJLabel[codeLength];
         MouseAdapter clearListener = new java.awt.event.MouseAdapter()
         {
+            @Override
             public void mousePressed(java.awt.event.MouseEvent evt)
             {
                 if (evt.getButton() == MouseEvent.BUTTON3)
@@ -198,14 +202,9 @@ public class PGame extends javax.swing.JLayeredPane
         PSymbols.setBackground(theme.getBackgroundColor());
         PSymbols.setLayout(new CentredRowLayout(codeLength, spacing, size));
 
-        DragGestureListener dragListener = new DragGestureListener()
+        DragGestureListener dragListener = (DragGestureEvent dge) ->
         {
-            @Override
-            public void dragGestureRecognized(DragGestureEvent dge)
-            {
-                onDrag(dge);
-            }
-
+            onDrag(dge);
         };
 
         DragableJLable LSymbol;
@@ -224,11 +223,12 @@ public class PGame extends javax.swing.JLayeredPane
 
         // Close the dialog when Esc is pressed
         String cancelName = "Show";
-        InputMap inputMap = getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        inputMap.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK), cancelName);
+       // InputMap inputMap = getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+       // inputMap.put(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK), cancelName);
         ActionMap actionMap = getActionMap();
         actionMap.put(cancelName, new AbstractAction()
         {
+            @Override
             public void actionPerformed(ActionEvent e)
             {
                 showCode();
@@ -267,18 +267,13 @@ public class PGame extends javax.swing.JLayeredPane
         this.dragWitness.setIcon(theme.getTokenWithMask(symbols[themeSymbol]));
         
         
-        dge.getDragSource().addDragSourceMotionListener(new DragSourceMotionListener()
+        dge.getDragSource().addDragSourceMotionListener((DragSourceDragEvent dsde) ->
         {
-            @Override
-            public void dragMouseMoved(DragSourceDragEvent dsde)
+            if (dragWitness!=null && dragWitness.isVisible())
             {
-                if(dragWitness!=null && dragWitness.isVisible())
-                { 
-                     Point p = dsde.getLocation();
-                    SwingUtilities.convertPointFromScreen(p,dragWitness.getParent());
-            
-                    dragWitness.setLocation(p.x-Theme.TOKEN_SIZE/2,p.y-Theme.TOKEN_SIZE/2);
-                }
+                Point p1 = dsde.getLocation();
+                SwingUtilities.convertPointFromScreen(p1, dragWitness.getParent());
+                dragWitness.setLocation(p1.x - Theme.TOKEN_SIZE/2, p1.y - Theme.TOKEN_SIZE/2);
             }
         });
         
@@ -318,18 +313,13 @@ public class PGame extends javax.swing.JLayeredPane
                 this.dragWitness.setVisible(false);
 
             }
-            catch (ColumNotFullException ex)
-            {
-                Logger.getLogger(PGame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            catch (InvalidSymbolException ex)
+            catch (ColumNotFullException | InvalidSymbolException ex)
             {
                 Logger.getLogger(PGame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
     }
-
     
 
     /**
@@ -435,9 +425,9 @@ public class PGame extends javax.swing.JLayeredPane
             }
             else
             {
-                for (int i = 0; i < LGuesses.length; i++)
+                for (DropableJLabel LGuesse : LGuesses)
                 {
-                    LGuesses[i].setBackground(theme.getDefaultTokenColor());
+                    LGuesse.setBackground(theme.getDefaultTokenColor());
                 }
             }
 
@@ -487,13 +477,9 @@ public class PGame extends javax.swing.JLayeredPane
         BPlayAgain.setBackground(theme.getBackgroundColor());
         BPlayAgain.setForeground(theme.getForegroundColor());
         BPlayAgain.setBorder(new LineBorder(theme.getForegroundColor()));
-        BPlayAgain.addActionListener(new ActionListener()
+        BPlayAgain.addActionListener((ActionEvent e) ->
         {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                BPlayagainActionPerformed(e);
-            }
+            BPlayagainActionPerformed(e);
         });
         add(BPlayAgain,2, 0);
 
@@ -526,6 +512,10 @@ public class PGame extends javax.swing.JLayeredPane
         }
      }                       
     
+    /**
+     *
+     * @return
+     */
     @Override
     public Dimension getMinimumSize()
     {
