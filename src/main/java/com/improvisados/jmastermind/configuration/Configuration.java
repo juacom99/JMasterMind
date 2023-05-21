@@ -41,32 +41,71 @@ public class Configuration
     private boolean firstRun;
 
     private static Configuration instance;
-        
+    
+    private static final Color[] DEFAULT_COLORS={
+        Color.RED,
+        Color.GREEN,
+        Color.BLUE,
+        Color.YELLOW,
+        new Color(255,128,0),   // Orange
+        Color.MAGENTA,
+        Color.CYAN,
+        new Color(255,140,140), // Light Red
+        new Color(140,255,140), // Ligth Green
+        new Color(140,140,255), // Ligth Blue
+        new Color(255,255,140), // Ligth Yellow
+        new Color(255,198,140), // Ligth Orange
+        new Color(255,140,255), // Ligth Magenta
+        new Color(140,255,255), // Ligth Cyan
+        new Color(115,0,0),     // Dark Red
+        new Color(0,115,0),     // Dark Green
+        new Color(0,0,115),     // Dark Blue
+        new Color(115,115,0),   // Dark Yellow
+        new Color(115,58,0),    // Dark Orange
+        new Color(115,0,115),   // Dark Magenta
+        new Color(0,115,115)    // Dark Cyan    
+    };
+
+    
+    private Configuration() {
+        this.colors = DEFAULT_COLORS;
+        this.currentTheme = "default";
+        this.firstRun = true;
+    } 
+    
 
     public static Configuration getInstance() {
         if(instance==null)
         {
-             try {
+             
 
-                    JsonReader reader = new JsonReader(new FileReader(new File("./config.jmmc")));
-                    GsonBuilder builder=new GsonBuilder();
-                    builder.registerTypeAdapter(Color.class,new ColorTypeAdapter());
-                    Gson gson = builder.create();
-                    instance = gson.fromJson(reader, Configuration.class);
-                    
-                    String[] path={"./themes"};
-                    ThemeController.getInstance().loadThemes(Arrays.asList(path));
-                    
-                    if(instance.getCurrentTheme()!=null)
-                    {
-                        ThemeController controller=ThemeController.getInstance();
-                        Theme current=controller.find(instance.getCurrentTheme());
-                        controller.setCurrent(current);
-                    }
-                    
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Theme.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                JsonReader reader = new JsonReader(new FileReader(new File("./config.jmmc")));
+                GsonBuilder builder=new GsonBuilder();
+                builder.registerTypeAdapter(Color.class,new ColorTypeAdapter());
+                Gson gson = builder.create();
+                instance = gson.fromJson(reader, Configuration.class);
+                
+                String[] path={"./themes"};
+                ThemeController.getInstance().loadThemes(Arrays.asList(path));
+                
+                if(instance.getCurrentTheme()!=null)
+                {
+                    ThemeController controller=ThemeController.getInstance();
+                    Theme current=controller.find(instance.getCurrentTheme());
+                    controller.setCurrent(current);
                 }
+            } 
+            catch (FileNotFoundException ex) {
+               
+                String[] path={"./themes"};
+                ThemeController.getInstance().loadThemes(Arrays.asList(path));
+                
+                instance=new Configuration();
+                instance.save("./config.jmmc");
+            }
+                    
+                
         }
         return instance;
     }
@@ -133,12 +172,5 @@ public class Configuration
     public String getThemePath()
     {
         return "./themes";
-    }
-    
-    
-    
-    
-    
-    
-    
+    }    
 }

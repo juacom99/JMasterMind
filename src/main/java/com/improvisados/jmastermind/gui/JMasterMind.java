@@ -67,6 +67,7 @@ public class JMasterMind extends javax.swing.JFrame
         
         Configuration cfg=Configuration.getInstance();
         
+        JMenuPanel.setBackground(theme.getMenuBackgroundColor());
         if(cfg.isFirstRun())
         {
         //TEST
@@ -116,7 +117,6 @@ public class JMasterMind extends javax.swing.JFrame
             }
         });
 
-        JMenuPanel.setBackground(new java.awt.Color(51, 51, 51));
         JMenuPanel.setPreferredSize(new java.awt.Dimension(434, 32));
         JMenuPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {

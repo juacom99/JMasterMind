@@ -311,6 +311,13 @@ public class PGame extends javax.swing.JLayeredPane
                 target.setBackground(c);
                 themeSymbol = -1;
                 this.dragWitness.setVisible(false);
+                
+                if(game.isGuessFull())
+                {
+                    Theme theme = ThemeController.getInstance().getCurrentTheme();
+                    BCheck.setToolTipText("Check!");
+                    BCheck.setIcon(theme.getCheckAvailable());                    
+                }
 
             }
             catch (ColumNotFullException | InvalidSymbolException ex)
@@ -329,8 +336,7 @@ public class PGame extends javax.swing.JLayeredPane
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         PCode = new javax.swing.JPanel();
         PBoard = new BoardPanel(7);
@@ -396,17 +402,16 @@ public class PGame extends javax.swing.JLayeredPane
         add(PGuess);
         PGuess.setBounds(360, 40, 20, 20);
 
+        BCheck.setToolTipText("Fill the row before checking");
         BCheck.setContentAreaFilled(false);
         BCheck.setOpaque(true);
-        BCheck.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        BCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BCheckActionPerformed(evt);
             }
         });
         add(BCheck);
-        BCheck.setBounds(280, 210, 80, 9);
+        BCheck.setBounds(280, 210, 80, 6);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCheckActionPerformed
@@ -429,6 +434,9 @@ public class PGame extends javax.swing.JLayeredPane
                 {
                     LGuesse.setBackground(theme.getDefaultTokenColor());
                 }
+                
+                BCheck.setToolTipText("Fill the row before checking");
+                BCheck.setIcon(theme.getCheck());
             }
 
         }
@@ -451,6 +459,7 @@ public class PGame extends javax.swing.JLayeredPane
             LGuesses[i].setBackground(theme.getDefaultTokenColor());
         }
         BCheck.setEnabled(false);
+        BCheck.setIcon(theme.getCheck());
 
         this.LState = new JLabel();
         LState.setSize(250, 312);
@@ -494,6 +503,8 @@ public class PGame extends javax.swing.JLayeredPane
             Theme theme = ThemeController.getInstance().getCurrentTheme();
             game.restartGame();
             BCheck.setEnabled(true);
+            BCheck.setRolloverIcon(theme.getCheck());
+            BCheck.setToolTipText("Check!");
              remove(LState);
             remove(BPlayAgain);
             ((BoardPanel)PBoard).resetComponent();

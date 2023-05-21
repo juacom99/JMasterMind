@@ -64,6 +64,7 @@ public class ConfigurationDialog extends JMMDialog
         LSelectTheme.setForeground(Color.white);
         LSelectTheme.setSize(150,Theme.SPACING);
          LSelectTheme.setLocation(Theme.SPACING, Theme.SPACING);
+         LSelectTheme.setForeground(theme.getForegroundColor());
         this.add(LSelectTheme);
 
         LThemes = new JList<Theme>();
@@ -72,8 +73,7 @@ public class ConfigurationDialog extends JMMDialog
         LThemes.setBorder(new LineBorder(theme.getDefaultTokenColor()));
 
         DefaultListModel<Theme> themesModel = new DefaultListModel<Theme>();
-        Iterator<Theme> themes = ThemeController.getInstance().getThemes();
-        themesModel.addElement(ThemeController.getInstance().getDefaultTheme());
+        Iterator<Theme> themes = ThemeController.getInstance().getThemes();       
 
         while (themes.hasNext())
         {
@@ -123,7 +123,7 @@ public class ConfigurationDialog extends JMMDialog
         JLabel LSelectColors=new JLabel("Select Colors:");
         LSelectColors.setLocation(colorSelection.getX(),colorSelection.getY()-2*Theme.SPACING);
         LSelectColors.setSize(150,Theme.SPACING);
-        LSelectColors.setForeground(Color.WHITE);
+        LSelectColors.setForeground(theme.getForegroundColor());
         this.add(LSelectColors);
 
         

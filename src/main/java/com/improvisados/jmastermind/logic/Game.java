@@ -108,7 +108,7 @@ public class Game {
          this.guess[col]=-1;
          
     }
-    private boolean isGuessFull() {
+    public boolean isGuessFull() {
         boolean out = true;
         for (int i = 0; i < this.guess.length && out; i++) {
             if (this.guess[i] == -1) {

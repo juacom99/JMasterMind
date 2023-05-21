@@ -1,0 +1,24 @@
+{
+  "name": "Dark",
+  "author": "Joaquin Martinez",
+  "backgroundColor": {
+    "r":43,
+    "g":43,
+    "b":43
+  },
+  "defaultTokenColor": {
+    "r":111,
+    "g":111,
+    "b":111
+  },
+  "foregroundColor": {
+    "r":225,
+    "g":225,
+    "b":225
+  },
+  "menuBackgroundColor":{
+    "r":51,
+    "g":51,
+    "b":51    
+    }
+}

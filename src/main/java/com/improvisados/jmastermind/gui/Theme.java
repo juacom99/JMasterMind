@@ -43,9 +43,12 @@ public class Theme {
     private Color backgroundColor;
     private Color defaultTokenColor;
     private Color foregroundColor;
+    private Color menuBackgroundColor;
     private transient ImageIcon token;
     private transient ImageIcon result;
     private transient ImageIcon check;
+    private transient ImageIcon checkUnavailable;
+    private transient ImageIcon checkAvailable;
     private transient ImageIcon won;
     private transient ImageIcon lost;
     private transient ImageIcon selected;
@@ -54,12 +57,13 @@ public class Theme {
 
     private String path;
 
-    public Theme(String name, String author, Color foregroundColor, Color backgroundColor, Color defaultTokenColor) {
+    public Theme(String name, String author, Color foregroundColor, Color backgroundColor, Color defaultTokenColor,Color menuBackgroundColor) {
         this.name = name;
         this.author = author;
         this.foregroundColor = foregroundColor;
         this.backgroundColor = backgroundColor;
         this.defaultTokenColor = defaultTokenColor;
+        this.menuBackgroundColor=menuBackgroundColor;
     }
 
     public String getName() {
@@ -80,6 +84,10 @@ public class Theme {
 
     public Color getDefaultTokenColor() {
         return defaultTokenColor;
+    }
+    
+    public Color getMenuBackgroundColor() {
+        return menuBackgroundColor;
     }
 
     public ImageIcon getToken() {
@@ -127,6 +135,14 @@ public class Theme {
         return check;
     }
 
+    public ImageIcon getCheckAvailable() {
+        if(checkAvailable==null)
+        {
+             this.checkAvailable = new javax.swing.ImageIcon(this.path + File.separator + "check_r_a.png");
+        }
+        return checkAvailable;
+    } 
+
     public void setPath(String path) {
         this.path = path;
     }
@@ -138,16 +154,17 @@ public class Theme {
     public static Theme load(Path folder) {
 
         Theme ret = null;
-        if (folder != null && folder.toFile().exists()) {
+        if (folder != null && folder.toFile().exists())
+        {
             File f = folder.toFile();
             String[] files = f.list(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
-                    return name.equals("theme.jmmt") || name.equals("token.png") || name.equals("result.png") || name.equals("check.png") || name.equals("selected.png") || name.equals("won.png") || name.equals("lost.png") || name.equals("tokenMask.png") || name.equals("addColor.png");
+                    return name.equals("theme.jmmt") || name.equals("token.png") || name.equals("result.png") || name.equals("check.png") || name.equals("selected.png") || name.equals("won.png") || name.equals("lost.png") || name.equals("tokenMask.png") || name.equals("addColor.png") || name.equals("check_r_a.png");
                 }
             });
 
-            if (files != null && files.length == 9) {
+            if (files != null && files.length == 10) {
                 try {
 
                     JsonReader reader = new JsonReader(new FileReader(new File(f.getAbsolutePath() + File.separator + "theme.jmmt")));
@@ -160,7 +177,9 @@ public class Theme {
                 }
             }
 
-        } else {
+        }
+        else
+        {
             throw new InvalidParameterException();
         }
 
@@ -178,6 +197,12 @@ public class Theme {
     public void setCheck(ImageIcon check) {
         this.check = check;
     }
+
+    public void setCheckAvailable(ImageIcon checkAvailable) {
+        this.checkAvailable = checkAvailable;
+    }
+
+  
 
     public void setWon(ImageIcon won) {
         this.won = won;

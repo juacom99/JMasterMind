@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.swing.ImageIcon;
 
+
 /**
  *
  * @author Joaquin Martinez <juacom04@gmail.com>
@@ -39,6 +40,13 @@ public class ThemeController {
     private List<Theme> themes;
     private Theme current;
 
+    private ThemeController()
+    {
+        themes=new ArrayList<>();
+    }
+
+    
+    
 
     public boolean add(Theme theme) {
         boolean ret=false;
@@ -94,35 +102,55 @@ public class ThemeController {
         return instance;
     }
 
-    private static Theme loadDefault() {
+   private static Theme loadDefault()
+   {
+       if(instance==null)
+       {
+           instance=getInstance();
+       }
 
-        Theme ret = new Theme("Default", "Joaquin Martinez", Color.WHITE, new Color(43, 43, 43), new Color(111, 111, 111));
+       
+       
+        Theme defaultDark = new Theme("Default Dark", "Joaquin Martinez", Color.WHITE, new Color(43, 43, 43), new Color(111, 111, 111),new Color(51,51,51));
         Class thisClass = ThemeController.class;
+        
+        defaultDark.setToken(new ImageIcon(thisClass.getResource("/themes/Default_Dark/token.png")));
+        defaultDark.setResult(new ImageIcon(thisClass.getResource("/themes/Default_Dark/result.png")));
+        defaultDark.setSelected(new ImageIcon(thisClass.getResource("/themes/Default_Dark/selected.png")));
+        defaultDark.setCheck(new ImageIcon(thisClass.getResource("/themes/Default_Dark/check.png")));
+        defaultDark.setCheckAvailable(new ImageIcon(thisClass.getResource("/themes/Default_Dark/check_r_a.png")));
+        defaultDark.setWon(new ImageIcon(thisClass.getResource("/themes/Default_Dark/won.png")));
+        defaultDark.setLost(new ImageIcon(thisClass.getResource("/themes/Default_Dark/lost.png")));
+        defaultDark.setTokenMask(new ImageIcon(thisClass.getResource("/themes/Default_Dark/tokenMask.png")));
+        defaultDark.setAddColor(new ImageIcon(thisClass.getResource("/themes/Default_Dark/addColor.png")));
+        //System.out.println(defaultDark + " Loades");
+        
+        instance.add(defaultDark);
+        
+        Theme defaultLight=new Theme("Default Light","Joaquin Martinez", new Color(43,43,43),new Color(212,212,212), new Color(136,136,136),new Color(204,204,204));
+        defaultLight.setToken(new ImageIcon(thisClass.getResource("/themes/Default_Light/token.png")));
+        defaultLight.setResult(new ImageIcon(thisClass.getResource("/themes/Default_Light/result.png")));
+        defaultLight.setSelected(new ImageIcon(thisClass.getResource("/themes/Default_Light/selected.png")));
+        defaultLight.setCheck(new ImageIcon(thisClass.getResource("/themes/Default_Light/check.png")));
+        defaultLight.setCheckAvailable(new ImageIcon(thisClass.getResource("/themes/Default_Dark/check_r_a.png")));
+        defaultLight.setWon(new ImageIcon(thisClass.getResource("/themes/Default_Light/won.png")));
+        defaultLight.setLost(new ImageIcon(thisClass.getResource("/themes/Default_Light/lost.png")));
+        defaultLight.setTokenMask(new ImageIcon(thisClass.getResource("/themes/Default_Light/tokenMask.png")));
+        defaultLight.setAddColor(new ImageIcon(thisClass.getResource("/themes/Default_Light/addColor.png")));
+        instance.add(defaultLight);
 
-        
-        
-        ret.setToken(new ImageIcon(thisClass.getResource("/themes/default/token.png")));
-        
-        ret.setResult(new ImageIcon(thisClass.getResource("/themes/default/result.png")));
-        ret.setSelected(new ImageIcon(thisClass.getResource("/themes/default/selected.png")));
-        ret.setCheck(new ImageIcon(thisClass.getResource("/themes/default/check.png")));
-        ret.setWon(new ImageIcon(thisClass.getResource("/themes/default/won.png")));
-        ret.setLost(new ImageIcon(thisClass.getResource("/themes/default/lost.png")));
-        ret.setTokenMask(new ImageIcon(thisClass.getResource("/themes/default/tokenMask.png")));
-         ret.setAddColor(new ImageIcon(thisClass.getResource("/themes/default/addColor.png")));
-        System.out.println(ret + " Loades");
-
-        return ret;
+        return defaultDark;
     }
-
+    
     public void loadThemes(List<String> paths) {
         if (this.themes == null) {
             this.themes=new ArrayList<Theme>();
+        }
             for (String path : paths) {
                 File file = new File(path);
                 if (file != null && file.exists()) {
                     
-                    System.out.println("Loading Themes for "+file.getAbsolutePath());
+                   // System.out.println("Loading Themes for "+file.getAbsolutePath());
                     
                     String[] directories = file.list(new FilenameFilter() {
                         @Override
@@ -137,16 +165,15 @@ public class ThemeController {
                             current = Theme.load(Paths.get(path +System.getProperty("file.separator")+ dir));
                             if (current != null) {
                                 add(current);
-                                System.out.println("        "+current + " Loaded");
+                               // System.out.println("        "+current + " Loaded");
                             } else {
-                                System.out.println("could not load Theme from " + dir);
+                                //System.out.println("could not load Theme from " + dir);
                             }
 
                         }
                     }
                 }
             }
-        }
     }
 
     public Iterator<Theme> getThemes()

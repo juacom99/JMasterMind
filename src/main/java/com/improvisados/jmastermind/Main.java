@@ -7,10 +7,13 @@ package com.improvisados.jmastermind;
 
 import com.improvisados.jmastermind.configuration.Configuration;
 import com.improvisados.jmastermind.gui.JMasterMind;
+import com.improvisados.jmastermind.gui.dialogs.JMMDialog;
 import java.awt.SplashScreen;
+import java.io.FileNotFoundException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,7 +66,7 @@ public class Main
                 SplashScreen mySplash = SplashScreen.getSplashScreen();
                 if (mySplash != null)
                 {
-                    System.out.println("NO NULL");
+                    //System.out.println("NO NULL");
                     try
                     {
                         Thread.sleep(400);
@@ -74,14 +77,17 @@ public class Main
                 }
                 else
                 {
-                    System.out.println("NULL");
+                    //System.out.println("NULL");
                 }
+     
                 Configuration.getInstance();
 
-                JMasterMind jmm = new JMasterMind();
-                jmm.setLocationRelativeTo(null);
-                jmm.setVisible(true);
-            }
+                    JMasterMind jmm = new JMasterMind();
+                    jmm.setLocationRelativeTo(null);
+                    jmm.setVisible(true);
+                }
+               
+            
         });
     }
 }
