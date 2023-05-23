@@ -19,7 +19,7 @@ package com.improvisados.jmastermind.gui.dialogs;
 
 import com.improvisados.jmastermind.configuration.Configuration;
 import com.improvisados.jmastermind.gui.Theme;
-import com.improvisados.jmastermind.gui.components.LeftRightSpinnerUI;
+import com.improvisados.jmastermind.gui.components.JSliderCustomUI;
 import com.improvisados.jmastermind.gui.controllers.JMMOptionPane;
 import com.improvisados.jmastermind.gui.controllers.ThemeController;
 import com.improvisados.jmastermind.gui.panels.ColorsPickerPane;
@@ -90,9 +90,16 @@ public class NewGameDialog extends javax.swing.JDialog {
         cancelButton.setBackground(theme.getForegroundColor());
 
         SCodeLength.setBorder(null);
-        
-        SCodeLength.setUI(new LeftRightSpinnerUI());
-        setSize(3*Theme.SPACING+colorsPicker.getWidth(),2*Theme.SPACING+35*4+colorsPicker.getHeight()+okButton.getHeight());
+                
+         setSize(3*Theme.SPACING+colorsPicker.getWidth(),2*Theme.SPACING+35*4+colorsPicker.getHeight()+okButton.getHeight());
+         
+         SCodeLength.setBackground(theme.getBackgroundColor());
+         SCodeLength.setForeground(theme.getForegroundColor());
+         SCodeLength.setUI(new JSliderCustomUI(SCodeLength));
+         
+          SGuesses.setBackground(theme.getBackgroundColor());
+         SGuesses.setForeground(theme.getForegroundColor());
+         SGuesses.setUI(new JSliderCustomUI(SGuesses));
     }
 
     /**
@@ -130,30 +137,37 @@ public class NewGameDialog extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         LCodeLength = new javax.swing.JLabel();
-        SCodeLength = new javax.swing.JSpinner();
         LGuesses = new javax.swing.JLabel();
-        SGuesses = new javax.swing.JSpinner();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         CBRepeate = new javax.swing.JCheckBox();
         LRepeate = new javax.swing.JLabel();
+        SCodeLength = new javax.swing.JSlider();
+        SGuesses = new javax.swing.JSlider();
 
         setResizable(false);
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter()
+        {
+            public void mouseDragged(java.awt.event.MouseEvent evt)
+            {
                 formMouseDragged(evt);
             }
         });
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+        addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mousePressed(java.awt.event.MouseEvent evt)
+            {
                 formMousePressed(evt);
             }
         });
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowClosing(java.awt.event.WindowEvent evt)
+            {
                 closeDialog(evt);
             }
         });
@@ -163,49 +177,55 @@ public class NewGameDialog extends javax.swing.JDialog {
         getContentPane().add(LCodeLength);
         LCodeLength.setBounds(16, 16, 80, 30);
 
-        SCodeLength.setModel(new javax.swing.SpinnerNumberModel(5, 4, 7, 1));
-        SCodeLength.setEditor(new javax.swing.JSpinner.NumberEditor(SCodeLength, "0"));
-        getContentPane().add(SCodeLength);
-        SCodeLength.setBounds(152, 16, 64, 30);
-
         LGuesses.setText("Guesses:");
         getContentPane().add(LGuesses);
         LGuesses.setBounds(16, 50, 80, 30);
-
-        SGuesses.setModel(new javax.swing.SpinnerNumberModel(11, 5, 20, 1));
-        SGuesses.setEditor(new javax.swing.JSpinner.NumberEditor(SGuesses, ""));
-        getContentPane().add(SGuesses);
-        SGuesses.setBounds(152, 50, 64, 30);
 
         okButton.setText("PLAY");
         okButton.setBorder(null);
         okButton.setContentAreaFilled(false);
         okButton.setOpaque(true);
-        okButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        okButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 okButtonActionPerformed(evt);
             }
         });
         getContentPane().add(okButton);
-        okButton.setBounds(580, 470, 81, 30);
+        okButton.setBounds(370, 480, 81, 30);
         getRootPane().setDefaultButton(okButton);
 
         cancelButton.setText("Cancel");
         cancelButton.setBorder(null);
         cancelButton.setContentAreaFilled(false);
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        cancelButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 cancelButtonActionPerformed(evt);
             }
         });
         getContentPane().add(cancelButton);
-        cancelButton.setBounds(490, 470, 70, 30);
+        cancelButton.setBounds(260, 480, 70, 30);
         getContentPane().add(CBRepeate);
         CBRepeate.setBounds(150, 90, 20, 19);
 
         LRepeate.setText("Repeat Symbols:");
         getContentPane().add(LRepeate);
         LRepeate.setBounds(20, 90, 120, 30);
+
+        SCodeLength.setMaximum(7);
+        SCodeLength.setMinimum(4);
+        SCodeLength.setValue(5);
+        getContentPane().add(SCodeLength);
+        SCodeLength.setBounds(110, 20, 200, 20);
+
+        SGuesses.setMaximum(20);
+        SGuesses.setMinimum(5);
+        SGuesses.setValue(11);
+        getContentPane().add(SGuesses);
+        SGuesses.setBounds(110, 50, 200, 10);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -275,8 +295,8 @@ public class NewGameDialog extends javax.swing.JDialog {
     private javax.swing.JLabel LCodeLength;
     private javax.swing.JLabel LGuesses;
     private javax.swing.JLabel LRepeate;
-    private javax.swing.JSpinner SCodeLength;
-    private javax.swing.JSpinner SGuesses;
+    private javax.swing.JSlider SCodeLength;
+    private javax.swing.JSlider SGuesses;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton okButton;
     // End of variables declaration//GEN-END:variables
