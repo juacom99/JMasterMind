@@ -50,9 +50,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
-import javax.swing.InputMap;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
@@ -165,8 +163,16 @@ public class PGame extends javax.swing.JLayeredPane
                     Theme theme = ThemeController.getInstance().getCurrentTheme();
                     try
                     {
+                        boolean wasComplete=game.isGuessFull();
                         game.clear(index);
                         LGuesses[index].setBackground(theme.getDefaultTokenColor());
+                        
+                        if(wasComplete)
+                        {
+                            BCheck.setToolTipText("Fill the row before checking");
+                            BCheck.setIcon(theme.getCheck());
+                        }
+                        
                     }
                     catch (ColumNotFullException ex)
                     {

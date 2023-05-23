@@ -19,6 +19,7 @@ package com.improvisados.jmastermind.gui.dialogs;
 
 import com.improvisados.jmastermind.configuration.Configuration;
 import com.improvisados.jmastermind.gui.Theme;
+import com.improvisados.jmastermind.gui.components.LeftRightSpinnerUI;
 import com.improvisados.jmastermind.gui.controllers.JMMOptionPane;
 import com.improvisados.jmastermind.gui.controllers.ThemeController;
 import com.improvisados.jmastermind.gui.panels.ColorsPickerPane;
@@ -31,7 +32,9 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
 public class NewGameDialog extends javax.swing.JDialog {
@@ -49,8 +52,6 @@ public class NewGameDialog extends javax.swing.JDialog {
         this.setUndecorated(true);
         
         initComponents();
-        
-        
 
         // Close the dialog when Esc is pressed
         String cancelName = "cancel";
@@ -88,16 +89,19 @@ public class NewGameDialog extends javax.swing.JDialog {
         cancelButton.setOpaque(true);
         cancelButton.setBackground(theme.getForegroundColor());
 
+        SCodeLength.setBorder(null);
+        
+        SCodeLength.setUI(new LeftRightSpinnerUI());
         setSize(3*Theme.SPACING+colorsPicker.getWidth(),2*Theme.SPACING+35*4+colorsPicker.getHeight()+okButton.getHeight());
     }
 
     /**
      * @return the return status of this dialog - one of RET_OK or RET_CANCEL
      */
-    public int getReturnStatus() {
+    public int getReturnStatus()
+    {
         return returnStatus;
     }
-
     
     public int getCodeLength()
     {
@@ -118,6 +122,7 @@ public class NewGameDialog extends javax.swing.JDialog {
     {
         return CBRepeate.isSelected();
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,8 +130,7 @@ public class NewGameDialog extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         LCodeLength = new javax.swing.JLabel();
         SCodeLength = new javax.swing.JSpinner();
@@ -138,24 +142,18 @@ public class NewGameDialog extends javax.swing.JDialog {
         LRepeate = new javax.swing.JLabel();
 
         setResizable(false);
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter()
-        {
-            public void mouseDragged(java.awt.event.MouseEvent evt)
-            {
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
             }
         });
-        addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mousePressed(java.awt.event.MouseEvent evt)
-            {
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 formMousePressed(evt);
             }
         });
-        addWindowListener(new java.awt.event.WindowAdapter()
-        {
-            public void windowClosing(java.awt.event.WindowEvent evt)
-            {
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
             }
         });
@@ -166,27 +164,25 @@ public class NewGameDialog extends javax.swing.JDialog {
         LCodeLength.setBounds(16, 16, 80, 30);
 
         SCodeLength.setModel(new javax.swing.SpinnerNumberModel(5, 4, 7, 1));
-        SCodeLength.setBorder(null);
+        SCodeLength.setEditor(new javax.swing.JSpinner.NumberEditor(SCodeLength, "0"));
         getContentPane().add(SCodeLength);
-        SCodeLength.setBounds(152, 16, 50, 30);
+        SCodeLength.setBounds(152, 16, 64, 30);
 
         LGuesses.setText("Guesses:");
         getContentPane().add(LGuesses);
         LGuesses.setBounds(16, 50, 80, 30);
 
         SGuesses.setModel(new javax.swing.SpinnerNumberModel(11, 5, 20, 1));
-        SGuesses.setBorder(null);
+        SGuesses.setEditor(new javax.swing.JSpinner.NumberEditor(SGuesses, ""));
         getContentPane().add(SGuesses);
-        SGuesses.setBounds(152, 50, 50, 30);
+        SGuesses.setBounds(152, 50, 64, 30);
 
         okButton.setText("PLAY");
         okButton.setBorder(null);
         okButton.setContentAreaFilled(false);
         okButton.setOpaque(true);
-        okButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
             }
         });
@@ -197,17 +193,15 @@ public class NewGameDialog extends javax.swing.JDialog {
         cancelButton.setText("Cancel");
         cancelButton.setBorder(null);
         cancelButton.setContentAreaFilled(false);
-        cancelButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
         });
         getContentPane().add(cancelButton);
         cancelButton.setBounds(490, 470, 70, 30);
         getContentPane().add(CBRepeate);
-        CBRepeate.setBounds(150, 90, 20, 21);
+        CBRepeate.setBounds(150, 90, 20, 19);
 
         LRepeate.setText("Repeat Symbols:");
         getContentPane().add(LRepeate);
@@ -269,13 +263,13 @@ public class NewGameDialog extends javax.swing.JDialog {
             
     }//GEN-LAST:event_formMouseDragged
     
-    private void doClose(int retStatus) {
-        returnStatus = retStatus;
-        setVisible(false);
-        dispose();
+    private void doClose(int retStatus)
+    {
+            returnStatus = retStatus;
+            setVisible(false);
+            dispose();
     }
 
-   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox CBRepeate;
     private javax.swing.JLabel LCodeLength;
