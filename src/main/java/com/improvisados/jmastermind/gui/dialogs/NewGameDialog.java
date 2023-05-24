@@ -94,12 +94,13 @@ public class NewGameDialog extends javax.swing.JDialog {
          setSize(3*Theme.SPACING+colorsPicker.getWidth(),2*Theme.SPACING+35*4+colorsPicker.getHeight()+okButton.getHeight());
          
          SCodeLength.setBackground(theme.getBackgroundColor());
-         SCodeLength.setForeground(theme.getForegroundColor());
-         SCodeLength.setUI(new JSliderCustomUI(SCodeLength));
-         
-          SGuesses.setBackground(theme.getBackgroundColor());
-         SGuesses.setForeground(theme.getForegroundColor());
-         SGuesses.setUI(new JSliderCustomUI(SGuesses));
+         SCodeLength.setUI(new JSliderCustomUI(SCodeLength,theme.getForegroundColor(),theme.getMenuBackgroundColor()));
+         LCodeLengthValue.setBackground(theme.getBackgroundColor());
+         LCodeLengthValue.setForeground(theme.getForegroundColor());
+         LCodeLengthValue.setText(SCodeLength.getValue()+"");
+
+         SGuesses.setBackground(theme.getBackgroundColor());
+       //  SGuesses.setUI(new JSliderCustomUI(SGuesses,theme.getForegroundColor(),theme.getMenuBackgroundColor()));
     }
 
     /**
@@ -137,8 +138,7 @@ public class NewGameDialog extends javax.swing.JDialog {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         LCodeLength = new javax.swing.JLabel();
         LGuesses = new javax.swing.JLabel();
@@ -148,26 +148,21 @@ public class NewGameDialog extends javax.swing.JDialog {
         LRepeate = new javax.swing.JLabel();
         SCodeLength = new javax.swing.JSlider();
         SGuesses = new javax.swing.JSlider();
+        LCodeLengthValue = new javax.swing.JLabel();
 
         setResizable(false);
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter()
-        {
-            public void mouseDragged(java.awt.event.MouseEvent evt)
-            {
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
             }
         });
-        addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mousePressed(java.awt.event.MouseEvent evt)
-            {
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 formMousePressed(evt);
             }
         });
-        addWindowListener(new java.awt.event.WindowAdapter()
-        {
-            public void windowClosing(java.awt.event.WindowEvent evt)
-            {
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
                 closeDialog(evt);
             }
         });
@@ -175,20 +170,18 @@ public class NewGameDialog extends javax.swing.JDialog {
 
         LCodeLength.setText("Code Length:");
         getContentPane().add(LCodeLength);
-        LCodeLength.setBounds(16, 16, 80, 30);
+        LCodeLength.setBounds(16, 16, 90, 30);
 
         LGuesses.setText("Guesses:");
         getContentPane().add(LGuesses);
-        LGuesses.setBounds(16, 50, 80, 30);
+        LGuesses.setBounds(20, 50, 80, 30);
 
         okButton.setText("PLAY");
         okButton.setBorder(null);
         okButton.setContentAreaFilled(false);
         okButton.setOpaque(true);
-        okButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okButtonActionPerformed(evt);
             }
         });
@@ -199,17 +192,15 @@ public class NewGameDialog extends javax.swing.JDialog {
         cancelButton.setText("Cancel");
         cancelButton.setBorder(null);
         cancelButton.setContentAreaFilled(false);
-        cancelButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
             }
         });
         getContentPane().add(cancelButton);
         cancelButton.setBounds(260, 480, 70, 30);
         getContentPane().add(CBRepeate);
-        CBRepeate.setBounds(150, 90, 20, 19);
+        CBRepeate.setBounds(150, 100, 20, 19);
 
         LRepeate.setText("Repeat Symbols:");
         getContentPane().add(LRepeate);
@@ -218,14 +209,21 @@ public class NewGameDialog extends javax.swing.JDialog {
         SCodeLength.setMaximum(7);
         SCodeLength.setMinimum(4);
         SCodeLength.setValue(5);
+        SCodeLength.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                SCodeLengthStateChanged(evt);
+            }
+        });
         getContentPane().add(SCodeLength);
-        SCodeLength.setBounds(110, 20, 200, 20);
+        SCodeLength.setBounds(140, 20, 170, 40);
 
         SGuesses.setMaximum(20);
         SGuesses.setMinimum(5);
         SGuesses.setValue(11);
         getContentPane().add(SGuesses);
-        SGuesses.setBounds(110, 50, 200, 10);
+        SGuesses.setBounds(140, 60, 170, 30);
+        getContentPane().add(LCodeLengthValue);
+        LCodeLengthValue.setBounds(320, 30, 40, 19);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -282,6 +280,10 @@ public class NewGameDialog extends javax.swing.JDialog {
             this.setLocation(X, Y);
             
     }//GEN-LAST:event_formMouseDragged
+
+    private void SCodeLengthStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SCodeLengthStateChanged
+        LCodeLengthValue.setText(SCodeLength.getValue()+"");
+    }//GEN-LAST:event_SCodeLengthStateChanged
     
     private void doClose(int retStatus)
     {
@@ -293,6 +295,7 @@ public class NewGameDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox CBRepeate;
     private javax.swing.JLabel LCodeLength;
+    private javax.swing.JLabel LCodeLengthValue;
     private javax.swing.JLabel LGuesses;
     private javax.swing.JLabel LRepeate;
     private javax.swing.JSlider SCodeLength;
