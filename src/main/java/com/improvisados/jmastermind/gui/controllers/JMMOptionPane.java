@@ -28,8 +28,7 @@ public class JMMOptionPane
 {
     public static int showMessageDialog(Component parentComponent,String message, String title, int optionType)
     {
-         JMMDialog messagePane=new JMMDialog(optionType,null,true);
-         messagePane.setLocationRelativeTo(parentComponent);
+         JMMDialog messagePane=new JMMDialog(optionType,null,true);         
          JLabel LMessage=new JLabel(message);
          LMessage.setFont(new java.awt.Font("Dialog", 1, 14));
          LMessage.setSize(LMessage.getPreferredSize());
@@ -37,6 +36,7 @@ public class JMMOptionPane
          LMessage.setForeground(ThemeController.getInstance().getCurrentTheme().getForegroundColor());
          messagePane.add(LMessage);
          messagePane.setSize(Theme.SPACING*3+LMessage.getWidth(),(int)messagePane.getPreferredSize().getHeight());
+         messagePane.setLocationRelativeTo(parentComponent);
          messagePane.setVisible(true);
               
          return messagePane.getReturnStatus();
