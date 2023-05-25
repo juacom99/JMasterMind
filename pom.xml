@@ -90,6 +90,7 @@
                                         <include>config.jmmc</include>
                                         <include>themes/*</include>
                                         <include>JMasterMind.bat</include>
+                                        <include>JMasterMind.sh</include>
                                         <include>LICENSE</include>                                           
                                     </includes>
                                 </resource>

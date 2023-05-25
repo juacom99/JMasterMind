@@ -160,11 +160,11 @@ public class Theme {
             String[] files = f.list(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
-                    return name.equals("theme.jmmt") || name.equals("token.png") || name.equals("result.png") || name.equals("check.png") || name.equals("selected.png") || name.equals("won.png") || name.equals("lost.png") || name.equals("tokenMask.png") || name.equals("addColor.png") || name.equals("check_r_a.png");
+                    return name.equals("theme.jmmt") || name.equals("token.png") || name.equals("result.png") || name.equals("check.png") || name.equals("selected.png") || name.equals("won.png") || name.equals("lost.png") || name.equals("tokenMask.png") || name.equals("addColor.png") || name.equals("check.png") || name.equals("check_r_a.png");
                 }
             });
 
-            if (files != null && files.length == 10) {
+            if (files != null && files.length == 11) {
                 try {
 
                     JsonReader reader = new JsonReader(new FileReader(new File(f.getAbsolutePath() + File.separator + "theme.jmmt")));
